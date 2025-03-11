@@ -1,12 +1,4 @@
---------------------------------------------------------
---  File created - Sunday-February-23-2025   
---------------------------------------------------------
-
---------------------------------------------------------
---  DDL for Table CATEGORIA
---------------------------------------------------------
-
-  CREATE TABLE CATEGORIA --ADDED IN MYSQL
+ CREATE TABLE CATEGORIA 
    (	
     CATEGORIA_ID INT NOT NULL AUTO_INCREMENT, 
 	 NOMBRE_CATEGORIA VARCHAR(20) NOT NULL,
@@ -14,11 +6,9 @@
     PRIMARY KEY(CATEGORIA_ID)
 
    );
---------------------------------------------------------
---  DDL for Table CATEGORIA_DEPARTAMENTO
---------------------------------------------------------
 
-  CREATE TABLE CATEGORIA_DEPARTAMENTO --ADDED IN MYSQL 
+
+  CREATE TABLE CATEGORIA_DEPARTAMENTO 
    (	
       ID INT NOT NULL AUTO_INCREMENT,
       PRIMARY KEY (ID),
@@ -27,21 +17,16 @@
       FOREIGN KEY(CATEGORIA_ID) REFERENCES CATEGORIA(CATEGORIA_ID), 
 	   FOREIGN KEY(DEPARTAMENTO_ID) REFERENCES DEPARTAMENTO(DEPARTAMENTO_ID)
    ); 
---------------------------------------------------------
---  DDL for Table DEPARTAMENTO
---------------------------------------------------------
 
-  CREATE TABLE DEPARTAMENTO --ADDED MYSQL
+
+  CREATE TABLE DEPARTAMENTO 
    (	
     DEPARTAMENTO_ID INT NOT NULL, 
 	 NOMBRE_DEPARTAMENTO VARCHAR(30) NOT NULL, 
 
     PRIMARY KEY(DEPARTAMENTO_ID)
    );
---------------------------------------------------------
---  DDL for Table DETALLE_DEVOLUCION
---------------------------------------------------------
---MODIFY THIS CHANCE
+
   CREATE TABLE DETALLE_DEVOLUCION 
    (	
     DETALLE_DEVOLUCION_ID INT NOT NULL AUTO_INCREMENT, 
@@ -54,30 +39,26 @@
     PRIMARY KEY(DETALLE_DEVOLUCION_ID),
     FOREIGN KEY(PRENDA_ID) REFERENCES PRENDA(PRENDA_ID)
    );
---------------------------------------------------------
---  DDL for Table DETALLE_VENTA
---------------------------------------------------------
 
-  CREATE TABLE DETALLE_VENTA --ADDED MYSQL
+
+  CREATE TABLE DETALLE_VENTA 
    (	
       DETALLE_VENTA_ID INT NOT NULL AUTO_INCREMENT,   
-	   TOTAL INT NOT NULL, --VERIFY THIS LABEL AND OTHERS MAYBE ITS BAD 
+	   TOTAL INT NOT NULL,
 	   FECHA DATE, 
 	   EMPLEADO_ID INT NOT NULL,
 
       PRIMARY KEY (DETALLE_VENTA_ID),
       FOREIGN KEY (EMPLEADO_ID) REFERENCES EMPLEADO(EMPLEADO_ID)
    );
---------------------------------------------------------
---  DDL for Table EMPLEADO
---------------------------------------------------------
 
-  CREATE TABLE EMPLEADO --ADDED MYSQL
+
+  CREATE TABLE EMPLEADO 
    (	
     EMPLEADO_ID INT NOT NULL AUTO_INCREMENT, 
-	 NOMBRE VARCHAR2(15), 
-	 APELLIDO_PATERNO VARCHAR2(15), 
-	 APELLIDO_MATERNO  VARCHAR2(15), 
+	 NOMBRE VARCHAR(15), 
+	 APELLIDO_PATERNO VARCHAR(15), 
+	 APELLIDO_MATERNO  VARCHAR(15), 
 	 TELEFONO  INT(10), 
 	 EMAIL VARCHAR(30), 
 	 DIRECCION VARCHAR(40), 
@@ -85,33 +66,26 @@
 
     PRIMARY KEY(EMPLEADO_ID)
    );
---------------------------------------------------------
---  DDL for Table MARCA
---------------------------------------------------------
 
-  CREATE TABLE MARCA --ADDED MYSQL
+
+  CREATE TABLE MARCA 
    (	
     MARCA_ID INT NOT NULL AUTO_INCREMENT, 
 	 NOMBRE_MARCA VARCHAR(15)
 
     PRIMARY KEY(MARCA_ID)
    );
---------------------------------------------------------
---  DDL for Table MATERIAL
---------------------------------------------------------
 
-  CREATE TABLE MATERIAL --ADDED MYSQL
+
+  CREATE TABLE MATERIAL 
    (
       MATERIAL_ID INT NOT NULL AUTO_INCREMENT, 
-	   NOMBRE_MATERIAL VARCHAR(15)
+	   NOMBRE_MATERIAL VARCHAR(15),
 
       PRIMARY KEY (MATERIAL_ID)
    );
---------------------------------------------------------
---  DDL for Table PRENDA
---------------------------------------------------------
 
-  CREATE TABLE PRENDA --ADDED MYSQL
+  CREATE TABLE PRENDA 
    (	
     PRENDA_ID INT NOT NULL AUTO_INCREMENT,  
 	 NOMBRE_PRENDA VARCHAR(30) NOT NULL, 
@@ -125,11 +99,8 @@
     FOREIGN KEY(MATERIAL_ID) REFERENCES MATERIAL(MATERIAL_ID),
     FOREIGN KEY(MARCA_ID) REFERENCES MARCA(MARCA_ID)
    );
---------------------------------------------------------
---  DDL for Table PRENDA_PROVEEDOR
---------------------------------------------------------
 
-  CREATE TABLE PRENDA_PROVEEDOR --ADDED MYSQL
+  CREATE TABLE PRENDA_PROVEEDOR 
    (
     ID INT NOT NULL AUTO_INCREMENT,	
     PRENDA_ID INT NOT NULL, 
@@ -139,11 +110,9 @@
     FOREIGN KEY(PRENDA_ID) REFERENCES PRENDA(PRENDA_ID),
     FOREIGN KEY(PROVEEDOR_ID) REFERENCES PROVEEDOR(PROVEEDOR_ID)
    );
---------------------------------------------------------
---  DDL for Table PRENDA_TALLA
---------------------------------------------------------
 
-  CREATE TABLE PRENDA_TALLA --ADDED MYSQL
+
+  CREATE TABLE PRENDA_TALLA
    (
     ID INT NOT NULL AUTO_INCREMENT  	
     PRENDA_ID INT NOT NULL, 
@@ -155,34 +124,28 @@
     FOREIGN KEY(TALLA_ID) REFERENCES TALLA(TALLA_ID)
 
    );
---------------------------------------------------------
---  DDL for Table PROVEEDOR
---------------------------------------------------------
 
-  CREATE TABLE PROVEEDOR --ADDED MYSQL
+
+  CREATE TABLE PROVEEDOR 
    (	
     PROVEEDOR_ID INT NOT NULL AUTO_INCREMENT, 
 	 NOMBRE_PROVEEDOR VARCHAR(30), 
 	 TELEFONO INT(10), 
 	 EMAIL VARCHAR(30), 
-	 DIRECCION VARCHAR(50)
+	 DIRECCION VARCHAR(50),
 
     PRIMARY KEY(PROVEEDOR_ID)
    );
---------------------------------------------------------
---  DDL for Table TALLA
---------------------------------------------------------
 
-  CREATE TABLE TALLA --ADDED MYSQL
+
+  CREATE TABLE TALLA 
    (	
       TALLA_ID INT NOT NULL AUTO_INCREMENT, 
 	   NOMBRE_TALLA VARCHAR(5),
 
       PRIMARY KEY (TALLA_ID)
    );
---------------------------------------------------------
---  DDL for Table VENTA_PRENDA
---------------------------------------------------------
+
 
   CREATE TABLE VENTA_PRENDA 
    (	
@@ -190,7 +153,7 @@
 	   DETALLE_VENTA_ID INT NOT NULL, 
 	   CANTIDAD INT NOT NULL, 
 	   PRECIO_UNITARIO FLOAT(6,2), 
-	   SUBTOTAL FLOAT(8,2)
+	   SUBTOTAL FLOAT(8,2),
 
       PRIMARY KEY (PRENDA_ID),
       FOREIGN KEY (DETALLE_VENTA_ID) REFERENCES DETALLE_VENTA(DETALLE_VENTA_ID)
@@ -427,6 +390,60 @@ INSERT INTO PRENDA_TALLA (PRENDA_ID, TALLA_ID, STOCK) VALUES
 (8,3,9),
 (9,4,6),
 (10,5,4);
+
+INSERT INTO PROVEEDOR (PROVEEDOR_ID, NOMBRE_PROVEEDOR, TELEFONO, EMAIL, DIRECCION) VALUES
+(21,'admin_test1',5561403187,'test!@mail.com','av simpre viva'),
+(61,'prueba3',5561403187,'prueba@gmail.com','calle siempre viva'),
+(1,'Textiles y Suministros Norte',5527845123,'contacto@tsnorte.com.mx','Av. Insurgentes Sur #1234, CDMX'),
+(2,'Suministros Industriales S.A.',5582345671,'ventas@suministrosind.com.mx','Calle Juárez #56, Guadalajara'),
+(3,'Manufacturas del Bajío',5539876542,'contacto@corpmanbajo.com.mx','Av. Chapultepec #234, Monterrey'),
+(4,'Manufacturas Globales',5594356728,'info@manuglobal.com.mx','Blvd. Benito Juárez #789, Puebla'),
+(5,'Industrias del Tejido',5515673450,'ventas@indeltejido.com.mx','Calle Morelos #12, Toluca'),
+(6,'Distribuciones Nacionales',5546732891,'contacto@distnacional.com.mx','Av. Reforma #345, CDMX'),
+(7,'Confecciones de Querétaro',5562345987,'ventas@confeccionesqro.com.mx','Calle Hidalgo #90, Querétaro'),
+(8,'Corporación Textil Mexicana',5579812365,'info@corptextil.com.mx','Av. Universidad #567, Mérida'),
+(9,'Grupo de Manufactura Exclusiva',5534567892,'contacto@grupoexclusivo.com.mx','Calle Independencia #678, León'),
+(10,'Premium Manufacturas S.A.',5591023456,'info@premiummanuf.com.mx','Av. Revolución #1001, CDMX'),
+(11,'Textiles del Sur',5587456123,'ventas@textilessur.com.mx','Calle Libertad #43, Oaxaca'),
+(12,'Materiales de Alta Calidad',5549832745,'contacto@materialesac.com.mx','Av. Hidalgo #34, Morelia'),
+(14,'Industrias del Norte',5592347812,'ventas@indelnorte.com.mx','Av. Patria #432, Tijuana'),
+(16,'Proveedora de Insumos Puebla',5587123490,'info@proveedorapuebla.com.mx','Calle Reforma #290, Puebla'),
+(17,'Distribuidora Maya',5567123845,'ventas@dismaya.com.mx','Av. Paseo Montejo #345, Mérida'),
+(18,'Insumos y Textiles Veracruz',5534982734,'contacto@insumosver.com.mx','Calle Independencia #12, Veracruz'),
+(19,'Insumos industriales',5578123945,'info@corpinsumosind.com.mx','Av. Cuauhtémoc #56, CDMX'),
+(20,'Manufacturas cmdx',5541237890,'contacto@mancentro.com.mx','Calle 5 de Mayo #321, San Luis Potosí'),
+(41,'prueba2',5561403187,'prov@mail.com','av siempre viva1');
+
+INSERT INTO TALLA (TALLA_ID, NOMBRE_TALLA) VALUES 
+(7,'XXXL'),
+(1,'XS'),
+(2,'S'),
+(3,'M'),
+(4,'L'),
+(5,'XL'),
+(6,'XXL'),
+(27,'dl');
+
+INSERT INTO VENTA_PRENDA (PRENDA_ID, DETALLE_VENTA_ID, CANTIDAD, PRECIO_UNITARIO, SUBTOTAL) VALUES
+(1,101,2,150,300),
+(2,102,1,75,75),
+(3,103,3,150,450),
+(4,104,1,50,50),
+(5,105,2,150,300),
+(7,107,1,70,70),
+(8,108,2,80,160),
+(9,109,1,120,120),
+(10,110,4,50,200),
+(11,111,3,120,360),
+(12,112,2,60,120),
+(13,113,1,40,40),
+(14,114,5,35,175),
+(15,115,1,20,20),
+(16,116,3,600,1800),
+(17,117,2,30,60),
+(18,118,1,80,80),
+(19,119,4,200,800);
+
 
 INSERT INTO PROVEEDOR (PROVEEDOR_ID, NOMBRE_PROVEEDOR, TELEFONO, EMAIL, DIRECCION) VALUES
 (21,'admin_test1',5561403187,'test!@mail.com','av simpre viva'),
